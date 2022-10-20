@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DnDBook.Views.CharactersPage"
+             BackgroundImageSource="Background.png">
+    <ContentPage.Content>
+        <CollectionView x:Name="charactersCollection" SelectionChanged="charactersCollection_SelectionChanged" SelectionMode="Single"
+                        SelectedItem="{Binding SelectedCharacter}" Margin="5" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Black" Margin="10" BackgroundColor="Transparent" >
+                        <StackLayout VerticalOptions="Center" >
+                            <Label Text="{Binding Name}" FontSize="26" FontAttributes="Bold" />
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Class}" FontSize="24" VerticalOptions="Center"
+                                       FontAttributes="Bold" />
+
+                                <Label Text="{Binding Level}" FontSize="24" Margin="10, 0, 0, 0" 
+                                       VerticalOptions="Center"  FontAttributes="Bold"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>

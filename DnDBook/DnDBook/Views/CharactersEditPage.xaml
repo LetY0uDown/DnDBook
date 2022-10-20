@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:DnDBook.Views"
+             x:DataType="views:CharactersEditPage"
+             xmlns:model="clr-namespace:DnDBook.Models"
+             x:Class="DnDBook.Views.CharactersEditPage"
+             BackgroundImageSource="Background.png">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, auto">
+            <StackLayout>
+                <Entry Placeholder="Имя" Text="{Binding CurrentCharacter.Name}"  MaxLength="20" />
+
+                <Entry Placeholder="Возраст" Text="{Binding CurrentCharacter.Age}"  MaxLength="4" />
+
+                <Entry Placeholder="Раса" Text="{Binding CurrentCharacter.Race}"  MaxLength="20" />
+
+                <Entry Placeholder="Класс" Text="{Binding CurrentCharacter.Class}"  MaxLength="20" />
+
+                <Entry Placeholder="Уровень" Text="{Binding CurrentCharacter.Level}" MaxLength="2" />
+
+                <Entry Placeholder="Хиты" Text="{Binding CurrentCharacter.HP}"  MaxLength="3" />
+
+                <Entry Placeholder="Класс брони" Text="{Binding CurrentCharacter.AC}"  MaxLength="2" />
+
+                <Picker x:Name="spellsPicker" SelectedItem="{Binding SelectedSpell}" />
+
+                <CollectionView ItemsSource="{Binding CurrentCharacter.Spells}" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type model:Spell}" >
+                            <Frame BorderColor="Black" Margin="5" BackgroundColor="Transparent" >
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" >
+                                    <Label Text="{Binding Title}" FontSize="18" FontAttributes="Bold" />
+
+                                    <Label Text="{Binding Level}" FontSize="18" FontAttributes="Bold" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <Grid VerticalOptions="End" Margin="5" Grid.Row="1" ColumnDefinitions="*, *">
+                <Button Text="Сохранить" BackgroundColor="#b88B6B" Clicked="OnSaveButtonClick"
+                        Margin="3" />
+
+                <Button Text="Удалить" BackgroundColor="#b88B6B" Clicked="OnDeleteButtonClick"
+                        Margin="3" Grid.Column="1" />
+            </Grid> 
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

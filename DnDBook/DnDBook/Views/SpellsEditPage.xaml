@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DnDBook.Views.SpellsEditPage"
+             BackgroundImageSource="Background.png">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, auto" >
+            <ScrollView>
+                <StackLayout>
+
+                    <Entry Placeholder="Название.." Text="{Binding Spell.Title}" MaxLength="20"/>
+
+                    <Entry Text="{Binding Spell.Level}" Placeholder="Уровень.." MaxLength="2"/>
+
+                    <Entry Text="{Binding Spell.Description}" Placeholder="Описание.." />
+
+                    <Entry Text="{Binding Spell.School}" Placeholder="Школа.." />
+                    <Entry Text="{Binding Spell.Distance}" Placeholder="Дистанция.." />
+                    <Entry Text="{Binding Spell.CastTime}" Placeholder="Время накладывания.." />
+                    <Entry Text="{Binding Spell.EffectTime}" Placeholder="Время действия.." />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                        <Label Text="Ритуал" />
+                        <Switch IsToggled="{Binding Spell.IsRitual}" />
+                    </StackLayout>
+
+                    <Entry Text="{Binding Spell.Classes}" Placeholder="Классы.." />
+
+                    <Entry Text="{Binding Spell.MaterialComponent}" Placeholder="Мат. компонент" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                        <Label Text="Вербальный компенент?" VerticalOptions="Center" />
+                        <Switch IsToggled="{Binding Spell.HaveVerbalComponent}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                        <Label Text="Соматический компенент?" VerticalOptions="Center" />
+                        <Switch IsToggled="{Binding Spell.HaveSomaticComponent}" />
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout VerticalOptions="End" Margin="5" Grid.Row="1" >
+                <Button Text="Сохранить" Clicked="OnSaveButtonClick" BackgroundColor="#b88B6B"/>
+                <Button Text="Удалить" Clicked="OnDeleteButtonClick" BackgroundColor="#b88B6B"/>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

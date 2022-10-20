@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DnDBook.Views.SpellsPage"
+             BackgroundImageSource="Background.png">
+    <ContentPage.Content>
+        <CollectionView x:Name="spellsCollection" SelectionChanged="spellsCollection_SelectionChanged" SelectionMode="Single"
+                        SelectedItem="{Binding SelectedSpell}" Margin="5" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Black" Margin="10" BackgroundColor="Transparent" >
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" >
+                            <Label Text="{Binding Title}" FontSize="26" FontAttributes="Bold" />
+
+                            <Label Text="{Binding Level}" FontSize="26" FontAttributes="Bold" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>

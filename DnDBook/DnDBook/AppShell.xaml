@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="DnDBook.AppShell"
+       xmlns:views="clr-namespace:DnDBook.Views"
+       BackgroundColor="#b88B6B"
+       FlyoutBackgroundColor="Wheat">
+
+    <TabBar>
+        <ShellContent Route="LoginPage"
+                      ContentTemplate="{DataTemplate views:LoginPage}" />
+    </TabBar>
+
+    <FlyoutItem Title="Персонажи" >
+        <ShellContent Title="Список" Route="CharactersPage" 
+                      ContentTemplate="{DataTemplate views:CharactersPage}" />
+
+        <ShellContent Title="Создать" Route="CharactersEditPage"
+                      ContentTemplate="{DataTemplate views:CharactersEditPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Заклинания" >
+        <ShellContent Title="Список" Route="SpellsPage"
+                      ContentTemplate="{DataTemplate views:SpellsPage}" />
+
+        <ShellContent Title="Создать" Route="SpellsEditPage"
+                      ContentTemplate="{DataTemplate views:SpellsEditPage}" />
+    </FlyoutItem>
+
+    <MenuItem Text="Выйти из аккаунта" Clicked="LogoutButtonClick" />
+
+</Shell>
