@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDBook.Android", "DnDBook\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDBook.iOS", "DnDBook\DnDBook.iOS\DnDBook.iOS.csproj", "{7F590985-340F-4F4E-8191-32EEFADF08F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDBook", "DnDBook\DnDBook\DnDBook.csproj", "{7E16CA69-75DB-463B-AA04-FA05C9DA4306}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DnDBook", "DnDBook\DnDBook\DnDBook.csproj", "{7E16CA69-75DB-463B-AA04-FA05C9DA4306}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
-﻿using DnDBook.Database;
+﻿using DnDBook.Core.Database;
+using DnDBook.Core.ViewModels;
 using DnDBook.Models;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,75 +11,28 @@ namespace DnDBook.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharactersEditPage : ContentPage
     {
-        private bool _isCreatingNew;
-
         public CharactersEditPage()
         {
-            InitializeComponent();          
-            
-            BindingContext = this;
+            InitializeComponent();
+
+            BindingContext = new CharacterEditViewModel(new Character(), true);
         }
 
-        public int CharacterID { get; set; }
-
-        private Spell _selectedSpell;
-        public Spell SelectedSpell
+        public int CharacterID
         {
-            get => _selectedSpell;
-            set
+            set => SetContext(value);
+        }
+
+        private async void SetContext(int id)
+        {
+            using (DatabaseContext db = new DatabaseContext())
             {
-                if (!CurrentCharacter.Spells.Contains(value))
-                    CurrentCharacter.Spells.Add(value);
+                var character = await db.Characters.FindAsync(id) ?? new Character();
 
-                _selectedSpell = value;
+                spellsPicker.ItemsSource = db.Spells.ToList();
+
+                BindingContext = new CharacterEditViewModel(character, id <= 0);
             }
-        }
-
-        private Character _currentCharacter;
-        public Character CurrentCharacter
-        {
-            get => _currentCharacter;
-            set
-            {
-                _currentCharacter = value;
-                OnPropertyChanged();
-            }
-        }
-        
-        protected override async void OnAppearing()
-        {
-            _isCreatingNew = CharacterID <= 0;
-            CurrentCharacter = await DataManager.Characters.GetAsync(CharacterID) ?? new Character();
-
-            spellsPicker.ItemsSource = DataManager.Spells.Values;
-
-            base.OnAppearing();
-        }
-
-        private async void OnSaveButtonClick(object sender, System.EventArgs e)
-        {
-            if (_isCreatingNew)
-            {
-                CurrentCharacter.OwnerID = App.CurrentUser.ID;
-
-                await DataManager.Characters.AddAsync(CurrentCharacter);
-            }
-
-            await DisplayAlert("Операция завершена успешно", "Данные вашего персонажа сохранены", "ОК");
-
-            await Shell.Current.GoToAsync("///CharactersPage");
-        }
-
-        private async void OnDeleteButtonClick(object sender, System.EventArgs e)
-        {
-            if (!_isCreatingNew)
-                await DataManager.Characters.RemoveAsync(CurrentCharacter);
-
-            CurrentCharacter = new Character();
-
-            await DisplayAlert("Операция завершена успешно", "Данные вашего персонажа удалены", "ОК");
-
-            await Shell.Current.GoToAsync("///CharactersPage");
         }
     }
 }

@@ -1,31 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:DnDBook.Views"
-             x:DataType="views:CharactersEditPage"
              xmlns:model="clr-namespace:DnDBook.Models"
              x:Class="DnDBook.Views.CharactersEditPage"
              BackgroundImageSource="Background.png">
     <ContentPage.Content>
         <Grid RowDefinitions="*, auto">
             <StackLayout>
-                <Entry Placeholder="Имя" Text="{Binding CurrentCharacter.Name}"  MaxLength="20" />
+                <Entry Placeholder="Имя" Text="{Binding EditingItem.Name}"  MaxLength="20" />
 
-                <Entry Placeholder="Возраст" Text="{Binding CurrentCharacter.Age}"  MaxLength="4" />
+                <Entry Placeholder="Возраст" Text="{Binding EditingItem.Age}"  MaxLength="4" />
 
-                <Entry Placeholder="Раса" Text="{Binding CurrentCharacter.Race}"  MaxLength="20" />
+                <Entry Placeholder="Раса" Text="{Binding EditingItem.Race}"  MaxLength="20" />
 
-                <Entry Placeholder="Класс" Text="{Binding CurrentCharacter.Class}"  MaxLength="20" />
+                <Entry Placeholder="Класс" Text="{Binding EditingItem.Class}"  MaxLength="20" />
 
-                <Entry Placeholder="Уровень" Text="{Binding CurrentCharacter.Level}" MaxLength="2" />
+                <Entry Placeholder="Уровень" Text="{Binding EditingItem.Level}" MaxLength="2" />
 
-                <Entry Placeholder="Хиты" Text="{Binding CurrentCharacter.HP}"  MaxLength="3" />
+                <Entry Placeholder="Хиты" Text="{Binding EditingItem.HP}"  MaxLength="3" />
 
-                <Entry Placeholder="Класс брони" Text="{Binding CurrentCharacter.AC}"  MaxLength="2" />
+                <Entry Placeholder="Класс брони" Text="{Binding EditingItem.AC}"  MaxLength="2" />
 
                 <Picker x:Name="spellsPicker" SelectedItem="{Binding SelectedSpell}" />
 
-                <CollectionView ItemsSource="{Binding CurrentCharacter.Spells}" >
+                <CollectionView ItemsSource="{Binding EditingItem.Spells}" >
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="{x:Type model:Spell}" >
                             <Frame BorderColor="Black" Margin="5" BackgroundColor="Transparent" >
@@ -41,10 +39,10 @@
             </StackLayout>
 
             <Grid VerticalOptions="End" Margin="5" Grid.Row="1" ColumnDefinitions="*, *">
-                <Button Text="Сохранить" BackgroundColor="#b88B6B" Clicked="OnSaveButtonClick"
+                <Button Text="Сохранить" BackgroundColor="#b88B6B" Command="{Binding SaveItemCommand}"
                         Margin="3" />
 
-                <Button Text="Удалить" BackgroundColor="#b88B6B" Clicked="OnDeleteButtonClick"
+                <Button Text="Удалить" BackgroundColor="#b88B6B" Command="{Binding DeleteItemCommand}"
                         Margin="3" Grid.Column="1" />
             </Grid> 
         </Grid>

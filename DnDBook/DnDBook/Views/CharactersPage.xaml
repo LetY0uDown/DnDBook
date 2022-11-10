@@ -4,8 +4,8 @@
              x:Class="DnDBook.Views.CharactersPage"
              BackgroundImageSource="Background.png">
     <ContentPage.Content>
-        <CollectionView x:Name="charactersCollection" SelectionChanged="charactersCollection_SelectionChanged" SelectionMode="Single"
-                        SelectedItem="{Binding SelectedCharacter}" Margin="5" >
+        <CollectionView SelectionMode="Single" ItemsSource="{Binding Items}"
+                        SelectedItem="{Binding SelectedItem}" Margin="5" >
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BorderColor="Black" Margin="10" BackgroundColor="Transparent" >

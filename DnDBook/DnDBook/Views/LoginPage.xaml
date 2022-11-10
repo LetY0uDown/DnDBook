@@ -14,8 +14,11 @@
             <Entry Placeholder="Имя" Text="{Binding Username}" />
             <Entry Placeholder="Пароль" Text="{Binding Password}" />
 
-            <Button Text="Войти" Clicked="LoginButtonClick" BackgroundColor="#b88B6B" Margin="3" />
-            <Button Text="Зарегестироваться" Clicked="RegisterButtonClick"  BackgroundColor="#b88B6B" Margin="3" />
+            <Button Text="Войти" Command="{Binding LoginCommand}"
+                    BackgroundColor="#b88B6B" Margin="3" />
+            
+            <Button Text="Зарегестироваться" Command="{Binding RegisterCommand}"
+                    BackgroundColor="#b88B6B" Margin="3" />
         </StackLayout>
         
     </ContentPage.Content>

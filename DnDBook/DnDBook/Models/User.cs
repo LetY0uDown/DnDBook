@@ -1,7 +1,8 @@
-﻿using DnDBook.Database;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DnDBook.Models
 {
+    [Table(nameof(User))]
     public class User : DBEntity
     {
         public User(string name, string password)

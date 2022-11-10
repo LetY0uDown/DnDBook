@@ -1,4 +1,5 @@
-﻿using DnDBook.Database;
+﻿using DnDBook.Core.Database;
+using DnDBook.Core.ViewModels;
 using DnDBook.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,59 +10,23 @@ namespace DnDBook.Views
     [QueryProperty(nameof(SpellID), nameof(SpellID))]
     public partial class SpellsEditPage : ContentPage
     {
-        private bool _isCreatingNew;
-
         public SpellsEditPage()
         {
             InitializeComponent();
 
-            BindingContext = this;
+            BindingContext = new SpellEditViewModel(new Spell(), true);
         }
 
-        public int SpellID { get; set; }
-
-        private Spell _spell;
-        public Spell Spell
+        public int SpellID 
         {
-            get => _spell;
-            set
-            {
-                _spell = value;
-                OnPropertyChanged();
-            }
+            set => SetContext(value);
         }
 
-        protected override async void OnAppearing()
+        protected async void SetContext(int id)
         {
-            _isCreatingNew = SpellID <= 0;
+            var spell = await DataManager.GetAsync<Spell>(id) ?? new Spell();
 
-            Spell = await DataManager.Spells.GetAsync(SpellID) ?? new Spell();
-
-            base.OnAppearing();
-        }
-
-        private async void OnSaveButtonClick(object sender, System.EventArgs e)
-        {
-            if (_isCreatingNew)
-            {
-                await DataManager.Spells.AddAsync(Spell);
-            }
-
-            await DisplayAlert("Операция завершена успешно", "Данные вашего заклинания сохранены", "ОК");
-
-            await Shell.Current.GoToAsync("///SpellsPage");
-        }
-
-        private async void OnDeleteButtonClick(object sender, System.EventArgs e)
-        {
-            if (!_isCreatingNew)
-                await DataManager.Spells.RemoveAsync(Spell);
-
-            Spell = new Spell();
-
-            await DisplayAlert("Операция завершена успешно", "Данные вашего заклинания удалены", "ОК");
-
-            await Shell.Current.GoToAsync("///SpellsPage");
+            BindingContext = new SpellEditViewModel(spell, id <= 0);
         }
     }
 }

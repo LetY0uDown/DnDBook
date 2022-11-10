@@ -1,4 +1,6 @@
-﻿namespace DnDBook.Database
+﻿using System;
+
+namespace DnDBook.Models
 {
     public abstract class DBEntity
     {

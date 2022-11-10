@@ -1,7 +1,8 @@
-﻿using DnDBook.Database;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DnDBook.Models
 {
+    [Table(nameof(Spell))]
     public class Spell : DBEntity
     {
         public string Title { get; set; }

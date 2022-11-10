@@ -8,42 +8,42 @@
             <ScrollView>
                 <StackLayout>
 
-                    <Entry Placeholder="Название.." Text="{Binding Spell.Title}" MaxLength="20"/>
+                    <Entry Placeholder="Название.." Text="{Binding EditingItem.Title}" MaxLength="20"/>
 
-                    <Entry Text="{Binding Spell.Level}" Placeholder="Уровень.." MaxLength="2"/>
+                    <Entry Text="{Binding EditingItem.Level}" Placeholder="Уровень.." MaxLength="2"/>
 
-                    <Entry Text="{Binding Spell.Description}" Placeholder="Описание.." />
+                    <Entry Text="{Binding EditingItem.Description}" Placeholder="Описание.." />
 
-                    <Entry Text="{Binding Spell.School}" Placeholder="Школа.." />
-                    <Entry Text="{Binding Spell.Distance}" Placeholder="Дистанция.." />
-                    <Entry Text="{Binding Spell.CastTime}" Placeholder="Время накладывания.." />
-                    <Entry Text="{Binding Spell.EffectTime}" Placeholder="Время действия.." />
+                    <Entry Text="{Binding EditingItem.School}" Placeholder="Школа.." />
+                    <Entry Text="{Binding EditingItem.Distance}" Placeholder="Дистанция.." />
+                    <Entry Text="{Binding EditingItem.CastTime}" Placeholder="Время накладывания.." />
+                    <Entry Text="{Binding EditingItem.EffectTime}" Placeholder="Время действия.." />
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
                         <Label Text="Ритуал" />
-                        <Switch IsToggled="{Binding Spell.IsRitual}" />
+                        <Switch IsToggled="{Binding EditingItem.IsRitual}" />
                     </StackLayout>
 
-                    <Entry Text="{Binding Spell.Classes}" Placeholder="Классы.." />
+                    <Entry Text="{Binding EditingItem.Classes}" Placeholder="Классы.." />
 
-                    <Entry Text="{Binding Spell.MaterialComponent}" Placeholder="Мат. компонент" />
+                    <Entry Text="{Binding EditingItem.MaterialComponent}" Placeholder="Мат. компонент" />
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
                         <Label Text="Вербальный компенент?" VerticalOptions="Center" />
-                        <Switch IsToggled="{Binding Spell.HaveVerbalComponent}" />
+                        <Switch IsToggled="{Binding EditingItem.HaveVerbalComponent}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
                         <Label Text="Соматический компенент?" VerticalOptions="Center" />
-                        <Switch IsToggled="{Binding Spell.HaveSomaticComponent}" />
+                        <Switch IsToggled="{Binding EditingItem.HaveSomaticComponent}" />
                     </StackLayout>
 
                 </StackLayout>
             </ScrollView>
 
             <StackLayout VerticalOptions="End" Margin="5" Grid.Row="1" >
-                <Button Text="Сохранить" Clicked="OnSaveButtonClick" BackgroundColor="#b88B6B"/>
-                <Button Text="Удалить" Clicked="OnDeleteButtonClick" BackgroundColor="#b88B6B"/>
+                <Button Text="Сохранить" Command="{Binding SaveItemCommand}" BackgroundColor="#b88B6B"/>
+                <Button Text="Удалить" Command="{Binding DeleteItemCommand}" BackgroundColor="#b88B6B"/>
             </StackLayout>
 
         </Grid>
